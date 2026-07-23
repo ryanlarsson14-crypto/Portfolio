@@ -1,7 +1,7 @@
 import streamlit as st
 import os
 
-# --- MEDIA SETTINGS (PASTE YOUR YOUTUBE LINKS HERE) ---
+# --- MEDIA SETTINGS ---
 URL_MDT_HUB = "https://youtu.be/_AYWoKyvQTo"
 URL_PBI_DASHBOARD = "https://youtu.be/oGp9sHEOP0U"
 URL_LEADERBOARD = "https://youtu.be/2pnC_YBjekI"
@@ -95,60 +95,60 @@ project_choice = st.selectbox(
 st.markdown(f"### {project_choice}")
 
 if project_choice == "Python - Data Cleaning":
-    st.write("""
-    Built an automated Python workflow to clean, merge, and process weekly performance data. 
-    This pipeline integrates **S&C, physiology, medical, and coaching datasets** into a unified structure, 
-    reducing manual processing time and ensuring data integrity through automated quality control.
+    st.write("Built an automated Python workflow to clean, merge, and process weekly performance data.")
+    st.markdown("""
+    - Integrated S&C, physiology, medical, psychology, and coaching datasets into a unified and repeatable data structure.
+    - Applied structured quality control processes including error checking and consistent variable naming.
+    - Developed cross-disciplinary visualisations using machine learning to link training load, readiness, and risk indicators.
     """)
     
-    # Workflow Presentation
     col_a, col_b, col_c = st.columns([1, 2, 1])
     with col_b:
         st.markdown("##### 1. Raw / Unclean Data")
         if os.path.exists("Unclean Data.png"): st.image("Unclean Data.png")
-        
         st.markdown('<div class="arrow">⬇️</div>', unsafe_allow_html=True)
-        
         st.markdown("##### 2. The Python Cleaning Function")
         if os.path.exists("Cleaning Function.png"): st.image("Cleaning Function.png")
-        
         st.markdown('<div class="arrow">⬇️</div>', unsafe_allow_html=True)
-        
         st.markdown("##### 3. Standardized Clean Output")
         if os.path.exists("Clean Data.png"): st.image("Clean Data.png")
 
 elif project_choice == "MDT Support Hub Website":
-    st.write("""
-    Engineered a centralized, password-protected web application using **Streamlit** to serve as a 
-    real-time decision-support hub for a Multi-Disciplinary Team (MDT). This system ingests pitch, gym, and 
-    medical records to provide "Smart Recommendations" for athlete readiness.
+    st.write("Engineered a centralized, password-protected web application using Streamlit to serve as a real-time decision-support hub for a Multi-Disciplinary Team (MDT).")
+    st.markdown("""
+    - Developed automated data pipelines to ingest and normalize disparate datasets, including GPS (Pitch), Gym (S&C), Wellness, and Medical/Injury records.
+    - Programmed complex performance algorithms, including Acute:Chronic Workload Ratios (ACWR) and weighted "Athlete Readiness" scores.
+    - Designed bespoke UI/UX interfaces for specific stakeholders to provide tailored tactical and physiological insights.
     """)
     st.video(URL_MDT_HUB)
 
 elif project_choice == "Power BI Athlete Performance Dashboard":
-    st.write("""
-    Designed a performance readiness dashboard tailored specifically for Sport Scientists. Using advanced 
-    **DAX calculations**, this tool assesses six-week performance trends and highlights potential 
-    injury concerns through interactive trend analysis and z-score distributions.
+    st.write("Designed a performance readiness dashboard tailored to a sport scientist audience.")
+    st.markdown("""
+    - Applied structured data modelling, DAX calculations, and interactive filtering.
+    - Analysed six-week performance trends to assess athlete readiness and highlight potential concerns.
+    - Delivered tailored insights to coaches and sport scientists, defending analytical decisions in a live panel setting.
     """)
     st.video(URL_PBI_DASHBOARD)
 
 elif project_choice == "Internship Placement Power BI Leaderboard":
-    st.write("""
-    Developed during my placement with **British Obstacle Sports** to gamify performance and track 
-    developmental milestones. This project involved maintaining accuracy across multiple UK national 
-    leagues and providing a visual platform for athlete standing and rankings.
+    st.write("Data Science & Visualisation Analyst placement focused on national athletic standings.")
+    st.markdown("""
+    - Analysed competition datasets from multiple UK national obstacle course racing leagues to support accurate athlete rankings.
+    - Designed clear and engaging data visualisations/dashboards using Power BI and Excel for online publication.
+    - Maintained data accuracy and version control while collaborating remotely with stakeholders across sport operations.
     """)
     st.video(URL_LEADERBOARD)
 
 elif project_choice == "Hudl Sportscode":
-    st.write("""
-    Designed a personalized performance analysis workflow in a professional football environment. 
-    Based on the **"What It Takes To Win" (WITTW)** model, this custom code window allows for 
-    rapid tactical event logging and immediate feedback for coaching staff.
+    st.write("Designed and justified a personalised performance analysis workflow aligned with coaching philosophy.")
+    st.markdown("""
+    - Developed and validated a “What It Takes to Win” performance model aligned with coaching priorities.
+    - Conducted intra- and inter-rater reliability testing using Hudl Sportscode and Excel.
+    - Produced coding windows, structured reports, and video playlists to support match feedback and tactical discussions.
     """)
     if os.path.exists("Code Window.png"):
-        st.image("Code Window.png", caption="Custom Hudl Sportscode Window Design")
+        st.image("Code Window.png")
 
 st.write("---")
 
