@@ -4,10 +4,12 @@ import os
 # --- PAGE CONFIG ---
 st.set_page_config(page_title="Ryan Brown | Performance Data Portfolio", page_icon="📊", layout="wide")
 
-# --- CUSTOM CSS ---
+# --- CUSTOM CSS (Enhanced for Professional Look) ---
 st.markdown("""
     <style>
-    .main { background-color: #f5f7f9; }
+    .main { background-color: #f8f9fa; }
+    [data-testid="stSidebar"] { background-color: #0e1117; }
+    .stRadio>div{ gap: 10px; }
     .stButton>button {
         width: 100%;
         border-radius: 5px;
@@ -15,8 +17,16 @@ st.markdown("""
         background-color: #0e3150;
         color: white;
         border: none;
+        transition: 0.3s;
     }
-    .stButton>button:hover { background-color: #2e7bcf; color: white; }
+    .stButton>button:hover { background-color: #2e7bcf; border: 1px solid #white; }
+    .project-card {
+        background-color: white;
+        padding: 20px;
+        border-radius: 10px;
+        border-left: 5px solid #0e3150;
+        box-shadow: 2px 2px 10px rgba(0,0,0,0.1);
+    }
     .skill-tag {
         display: inline-block;
         padding: 4px 12px;
@@ -29,135 +39,151 @@ st.markdown("""
     </style>
     """, unsafe_allow_html=True)
 
-# --- SIDEBAR ---
+# --- SIDEBAR NAVIGATION ---
 with st.sidebar:
-    if os.path.exists("Ryan_Brown_Photo.jpeg"):
-        st.image("Ryan_Brown_Photo.jpeg", use_container_width=True)
-        
-    st.title("Ryan Brown")
-    st.markdown("📍 Christchurch, Bournemouth")
-    st.markdown("📞 07934440537")
-    st.markdown("✉️ [Ryanlarsson14@gmail.com](mailto:Ryanlarsson14@gmail.com)")
-    
+    st.title("📌 Navigation")
+    selection = st.radio("Go to:", ["About Me", "My Work", "Contact Details"])
     st.write("---")
-    st.markdown("### Socials")
-    st.markdown("[🔗 LinkedIn](https://www.linkedin.com/in/ryan-brown-data)")
-    st.markdown("[💻 GitHub](https://github.com/ryanlarsson14-crypto)")
-    
-    st.write("---")
-    st.subheader("Download My CV")
-    
-    # DATA CV
-    try:
-        with open("Data_Analyst_and_Scientist_CV.pdf", "rb") as f:
-            st.download_button("📊 Download Data CV", f, file_name="Ryan_Brown_Data_CV.pdf")
-    except:
-        st.warning("Data CV file not found.")
+    st.caption("Ryan Brown | Portfolio v2.0")
 
-    # SPORT CV
-    try:
-        with open("Sports Performance Analysis CV.pdf", "rb") as f:
-            st.download_button("🏃 Download Sport CV", f, file_name="Ryan_Brown_Sport_CV.pdf")
-    except:
-        st.warning("Sport CV file not found.")
-
-# --- MAIN HEADER ---
-st.title("Performance Analyst & Data Scientist")
-st.markdown("### *Bridging the gap between athletic performance and data-driven strategy.*")
-
-# --- SKILLS SECTION ---
-st.write("---")
-cols = st.columns(4)
-skills = [
-    ["Python (Pandas)", "Streamlit", "SQL"],
-    ["Power BI (DAX)", "Tableau", "Excel VBA"],
-    ["Hudl Sportscode", "GPS Load Mgmt", "ACWR"],
-    ["Statistical Modeling", "Z-Score Analysis", "Machine Learning"]
-]
-for i, col in enumerate(cols):
-    for skill in skills[i]:
-        col.markdown(f'<span class="skill-tag">{skill}</span>', unsafe_allow_html=True)
-
-# --- TABS ---
-tab1, tab2, tab3, tab4 = st.tabs(["🚀 The Hub (Python)", "📊 Power BI Dashboards", "🎥 Video Analysis & BOS", "👨‍💻 About Me"])
-
-with tab1:
-    st.header("The Data Pipeline: From Raw to Refined")
-    st.write("A demonstration of my automated cleaning process for high-performance datasets.")
-    
-    col1, col2, col3 = st.columns(3)
+# --- SECTION 1: ABOUT ME ---
+if selection == "About Me":
+    st.title("👋 About Me")
+    col1, col2 = st.columns([2, 1])
     
     with col1:
-        st.markdown("### 1. Unclean Data")
-        if os.path.exists("images/Unclean Data.png"):
-            st.image("images/Unclean Data.png", caption="Raw, disorganized athlete data.")
+        st.markdown(f"""
+        ### Performance Analyst & Data Scientist
+        **Location:** Christchurch, Bournemouth (UK)
         
-    with col2:
-        st.markdown("### 2. The Python Solution")
-        if os.path.exists("images/Cleaning Function.png"):
-            st.image("images/Cleaning Function.png", caption="My custom script to automate ETL.")
-
-    with col3:
-        st.markdown("### 3. Clean Output")
-        if os.path.exists("images/Clean Data.png"):
-            st.image("images/Clean Data.png", caption="Standardized data ready for analysis.")
-
-    st.write("---")
-    st.subheader("Project Demo")
-    # HUB VIDEO
-    st.video("https://youtu.be/_AYWoKyvQTo")
-
-with tab2:
-    st.header("Performance Readiness Dashboards")
-    col1, col2 = st.columns([1.2, 1])
-    with col1:
-        # POWER BI VIDEO
-        st.video("https://youtu.be/oGp9sHEOP0U")
-    with col2:
-        st.write("""
-        **Visualizing the Story:**
-        - Interactive Power BI dashboards tracking fatigue and workload trends.
-        - Calculated **ACWR** to predict and prevent injury.
-        - Strategic debriefs for **BU Men’s 2nd Football Team**.
+        I am a data-driven specialist focused on bridging the gap between raw athletic metrics and elite-level strategy. 
+        With a background spanning high-performance team environments and national governing bodies, I transform complex 
+        datasets into actionable tactical advantages.
+        
+        **Educational History:**
+        *   **MSc Sports Performance Analysis** | Bournemouth University
+        *   Specialized in automated ETL pipelines and tactical workflow design.
+        
+        **Previous Experience:**
+        *   **BU Sport:** Delivered performance insights and workload management for university elite squads.
+        *   **British Obstacle Sports (BOS):** Developed national ranking systems and data-driven competition structures.
         """)
-
-with tab3:
-    st.header("Tactical Workflow & National Rankings")
     
-    st.subheader("Hudl Sportscode: Tactical Workflow Design")
-    c1, c2 = st.columns([1.5, 1])
-    with c1:
-        if os.path.exists("images/Code Window.png"):
-            st.image("images/Code Window.png", caption="Dissertation: Custom Football Coding Window")
-    with c2:
-        st.write("""
-        **Dissertation Focus:**
-        - Designed a personalized performance analysis workflow.
-        - Translated tactical events into actionable performance markers (WITTW model).
-        """)
-
-    st.write("---")
-    st.subheader("British Obstacle Sports (BOS) Ranking System")
-    # RANKINGS VIDEO
-    st.video("https://youtu.be/2pnC_YBjekI")
-
-with tab4:
-    st.header("The Human Side of Data")
-    col_a, col_b = st.columns([2, 1])
-    with col_a:
-        st.write("""
-        I’ve lived in Bournemouth my whole life and am fascinated by the "why" behind performance. 
-        My Master's at Bournemouth University allowed me to weaponize sporting passion with Python and SQL. 
-        
-        I don't just provide numbers; I provide answers. I treat business data with the same scrutiny as an elite athlete's GPS profile.
-        """)
-    with col_b:
+    with col2:
         st.info("""
-        - ⚽ **Celtic FC Fan**
-        - 🎓 **MSc Sports Performance Analysis**
-        - 🎾 **Football, Tennis & Pickleball**
+        **Hobbies & Interests**
+        * ⚽ **Celtic FC Fan**
+        * 🎾 **Football, Tennis & Pickleball**
+        * 🐍 **Python Enthusiast**
         """)
+
+# --- SECTION 2: MY WORK (With Slicer) ---
+elif selection == "My Work":
+    st.title("📂 Project Showcase")
+    st.markdown("Select a project below to view the technical breakdown and results.")
+    
+    # THE SLICER
+    project_choice = st.selectbox(
+        "Select Project:", 
+        [
+            "Python - Data Cleaning", 
+            "MDT Support Hub Website", 
+            "Power BI Athlete Performance Dashboard", 
+            "Internship Placement Power BI Leaderboard", 
+            "Hudl Sportscode"
+        ]
+    )
+    
+    st.write("---")
+
+    if project_choice == "Python - Data Cleaning":
+        st.header("Python - Data Cleaning")
+        col1, col2 = st.columns([1, 1])
+        with col1:
+            st.markdown("""
+            **The Challenge:** Raw athlete data is often messy, inconsistent, and time-consuming to process manually.
+            **The Solution:** I built an automated ETL (Extract, Load, Transform) pipeline using Python.
+            
+            *   **Tools:** Pandas, NumPy.
+            *   **Outcome:** Reduced data processing time by 90%, ensuring clean data for immediate analysis.
+            """)
+        with col2:
+            # Placeholder for Image/Video
+            st.info("Please provide the image/video link for the Data Cleaning script.")
+            # Example: st.image("images/cleaning_script.png")
+
+    elif project_choice == "MDT Support Hub Website":
+        st.header("MDT Support Hub Website")
+        st.markdown("""
+        **Project Overview:** A centralized hub for Multi-Disciplinary Teams (MDT) to access athlete data in real-time.
+        
+        *   **Key Features:** Automated reporting, injury tracking, and tactical databases.
+        *   **Impact:** Streamlined communication between coaches, physios, and analysts.
+        """)
+        # Placeholder for Video
+        st.info("Please provide the video demo for the MDT Support Hub.")
+
+    elif project_choice == "Power BI Athlete Performance Dashboard":
+        st.header("Power BI Athlete Performance Dashboard")
+        st.markdown("""
+        **Project Overview:** A comprehensive visual suite tracking ACWR (Acute:Chronic Workload Ratio) and fatigue markers.
+        
+        *   **Visuals:** Heatmaps, trend lines, and Z-score distribution.
+        *   **Strategic Use:** Used to flag athletes at high risk of injury before sessions.
+        """)
+        # Placeholder for Video
+        st.info("Please provide the video for the Power BI Dashboard.")
+
+    elif project_choice == "Internship Placement Power BI Leaderboard":
+        st.header("Internship Placement Power BI Leaderboard")
+        st.markdown("""
+        **Project Overview:** Developed during my placement to gamify performance and track developmental milestones.
+        
+        *   **Objective:** To increase athlete engagement and provide objective feedback on training standards.
+        """)
+        # Placeholder for Image/Video
+        st.info("Please provide assets for the Internship Leaderboard.")
+
+    elif project_choice == "Hudl Sportscode":
+        st.header("Hudl Sportscode Tactical Workflow")
+        st.markdown("""
+        **Project Overview:** Custom coding window design for tactical analysis.
+        
+        *   **Methodology:** Integrated the WITTW (What It Takes To Win) model into a functional coding interface.
+        *   **Outcome:** Enhanced the speed of post-match debriefs for coaching staff.
+        """)
+        # Placeholder for Image/Video
+        st.info("Please provide the image/video for the Hudl Sportscode workflow.")
+
+# --- SECTION 3: CONTACT DETAILS ---
+elif selection == "Contact Details":
+    st.title("✉️ Contact & Documentation")
+    
+    st.markdown("### Ryan Brown")
+    st.markdown("**Email:** [Ryanlarsson14@gmail.com](mailto:Ryanlarsson14@gmail.com)")
+    st.markdown("**LinkedIn:** [linkedin.com/in/ryan-brown-data](https://www.linkedin.com/in/ryan-brown-data)")
+    
+    st.write("---")
+    st.subheader("Curriculum Vitae")
+    
+    c1, c2 = st.columns(2)
+    
+    with c1:
+        st.markdown("#### Data Analysis Focus")
+        try:
+            with open("Data_Analyst_and_Scientist_CV.pdf", "rb") as f:
+                st.download_button("📂 Download Data Analyst / Scientist CV", f, file_name="Ryan_Brown_Data_CV.pdf")
+        except:
+            st.error("Data CV file not found. Please ensure the filename matches exactly.")
+
+    with c2:
+        st.markdown("#### Sports Performance Focus")
+        try:
+            with open("Sports Performance Analysis CV.pdf", "rb") as f:
+                st.download_button("🏃 Download Sports Performance Analysis CV", f, file_name="Ryan_Brown_Sport_CV.pdf")
+        except:
+            st.error("Sports CV file not found. Please ensure the filename matches exactly.")
 
 # --- FOOTER ---
 st.write("---")
-st.caption("Built by Ryan Brown | © 2026")
+st.caption("Built by Ryan Brown | © 2026 | Christchurch, Bournemouth")
