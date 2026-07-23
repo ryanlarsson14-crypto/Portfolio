@@ -1,7 +1,7 @@
 import streamlit as st
 import os
 
-# --- MEDIA SETTINGS ---
+# --- MEDIA SETTINGS (Replace YOUR_VIDEO_ID with your actual YouTube IDs) ---
 URL_MDT_HUB = "https://youtu.be/_AYWoKyvQTo"
 URL_PBI_DASHBOARD = "https://youtu.be/oGp9sHEOP0U"
 URL_LEADERBOARD = "https://youtu.be/2pnC_YBjekI"
@@ -105,13 +105,15 @@ if project_choice == "Python - Data Cleaning":
     col_a, col_b, col_c = st.columns([1, 2, 1])
     with col_b:
         st.markdown("##### 1. Raw / Unclean Data")
-        if os.path.exists("Unclean Data.png"): st.image("Unclean Data.png")
+        st.image("images/Unclean Data.png")
         st.markdown('<div class="arrow">⬇️</div>', unsafe_allow_html=True)
+        
         st.markdown("##### 2. The Python Cleaning Function")
-        if os.path.exists("Cleaning Function.png"): st.image("Cleaning Function.png")
+        st.image("images/Cleaning Function.png")
         st.markdown('<div class="arrow">⬇️</div>', unsafe_allow_html=True)
+        
         st.markdown("##### 3. Standardized Clean Output")
-        if os.path.exists("Clean Data.png"): st.image("Clean Data.png")
+        st.image("images/Clean Data.png")
 
 elif project_choice == "MDT Support Hub Website":
     st.write("Engineered a centralized, password-protected web application using Streamlit to serve as a real-time decision-support hub for a Multi-Disciplinary Team (MDT).")
@@ -147,8 +149,7 @@ elif project_choice == "Hudl Sportscode":
     - Conducted intra- and inter-rater reliability testing using Hudl Sportscode and Excel.
     - Produced coding windows, structured reports, and video playlists to support match feedback and tactical discussions.
     """)
-    if os.path.exists("Code Window.png"):
-        st.image("Code Window.png")
+    st.image("images/Code Window.png")
 
 st.write("---")
 
@@ -162,10 +163,13 @@ with col_a:
     st.write(f"**LinkedIn:** [View Profile](https://www.linkedin.com/in/ryan-brown-460bb3344)")
 with col_b:
     st.markdown("### My CV")
+    
+    # Filenames updated to match your screenshot
     try:
         with open("Data_Analyst_and_Scientist_CV.pdf", "rb") as f:
             st.download_button("📊 Data Analyst / Scientist CV", f, file_name="Ryan_Brown_Data_CV.pdf")
     except: st.error("Data CV File Missing")
+    
     try:
         with open("Sports Performance Analysis CV.pdf", "rb") as f:
             st.download_button("🏃 Sports Performance Analysis CV", f, file_name="Ryan_Brown_Sport_CV.pdf")
