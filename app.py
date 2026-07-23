@@ -87,13 +87,27 @@ st.write("---")
 st.markdown('<span id="my-work"></span>', unsafe_allow_html=True)
 st.title("📂 My Work")
 
+# --- THE SLICER ---
+# The CSS below handles the color. Just ensure this stays in your <style> block:
+st.markdown("""
+<style>
+    /* Emerald Green Slicer */
+    div[data-baseweb="select"] > div { 
+        background-color: #043927 !important; 
+        color: white !important; 
+    }
+    div[data-baseweb="select"] span { 
+        color: white !important; 
+    }
+</style>
+""", unsafe_allow_html=True)
+
 project_choice = st.selectbox(
     "Choose a project to view details:", 
     ["Python - Data Cleaning", "MDT Support Hub Website", "Power BI Athlete Performance Dashboard", "Internship Placement Power BI Leaderboard", "Hudl Sportscode"]
 )
 
 st.markdown(f"### {project_choice}")
-
 if project_choice == "Python - Data Cleaning":
     st.write("Built an automated Python workflow to clean, merge, and process weekly performance data.")
     st.markdown("""
@@ -162,17 +176,20 @@ with col_a:
     st.write(f"**Email:** [Ryanlarsson14@gmail.com](mailto:Ryanlarsson14@gmail.com)")
     st.write(f"**LinkedIn:** [View Profile](https://www.linkedin.com/in/ryan-brown-460bb3344)")
 with col_b:
-    st.markdown("### My CV")
+    # No header or extra styling here to ensure it stays clean
     
-    # Filenames updated to match your screenshot
+    # Data CV
     try:
         with open("Data_Analyst_and_Scientist_CV.pdf", "rb") as f:
             st.download_button("📊 Data Analyst / Scientist CV", f, file_name="Ryan_Brown_Data_CV.pdf")
-    except: st.error("Data CV File Missing")
+    except: 
+        st.error("Data CV File Missing")
     
+    # Sport CV
     try:
         with open("Sports Performance Analysis CV.pdf", "rb") as f:
             st.download_button("🏃 Sports Performance Analysis CV", f, file_name="Ryan_Brown_Sport_CV.pdf")
-    except: st.error("Sport CV File Missing")
+    except: 
+        st.error("Sport CV File Missing")
 
 st.caption("Built by Ryan Brown | © 2026 | Christchurch, Bournemouth (UK)")
