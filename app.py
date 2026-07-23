@@ -31,30 +31,45 @@ st.markdown("""
         color: white !important;
     }
 
-    /* Custom Education Box (Thin Emerald Border) */
+    /* Custom Education Box (Thicker Emerald Border) */
     .edu-box {
-        border: 1px solid #043927;
+        border: 3px solid #043927; /* Increased thickness */
         padding: 20px;
         border-radius: 2px;
         color: #000000;
         background-color: transparent;
     }
 
-    /* Buttons */
+    /* Buttons - Removed black background, made them Emerald Outline */
     .stButton>button {
         width: 100%;
         border-radius: 2px;
         height: 3em;
-        background-color: #043927;
-        color: #FCF9F2;
-        border: 1px solid #043927;
+        background-color: transparent; /* No more black/dark background */
+        color: #043927;
+        border: 2px solid #043927;
         font-family: 'Playfair Display', serif;
         transition: 0.4s;
     }
     .stButton>button:hover {
-        background-color: #FCF9F2;
-        color: #043927;
-        border: 1px solid #043927;
+        background-color: #043927;
+        color: #FCF9F2;
+    }
+
+    /* Slicer (Selectbox) - Made Emerald Green */
+    div[data-baseweb="select"] > div {
+        background-color: #043927 !important;
+        color: white !important;
+        border: none !important;
+    }
+    
+    /* Ensuring the text inside the slicer is white */
+    div[data-testid="stSelectbox"] label p {
+        color: #000000 !important; /* Label stays black */
+    }
+    
+    div[data-baseweb="select"] * {
+        color: white !important; /* Selection text becomes white */
     }
 
     /* Anchor Link Offset */
