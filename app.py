@@ -24,26 +24,46 @@ st.markdown("""
     /* Education Box */
     .edu-box { border: 3px solid #043927; padding: 20px; border-radius: 2px; color: #000000; }
 
-    /* Buttons - Forced transparency to remove black box */
-    .stButton>button {
-        width: 100% !important; 
-        border-radius: 2px !important; 
-        height: 3em !important; 
-        background-color: transparent !important; /* Force removal of black/dark background */
-        color: #043927 !important; 
-        border: 2px solid #043927 !important; 
-        font-family: 'Playfair Display', serif !important; 
+    /* --- THE FIX FOR BLACK BOXES ON BUTTONS --- */
+    /* This targets the button, the hover state, and the focus state specifically */
+    button[kind="secondary"], 
+    .stButton>button, 
+    div[data-testid="stDownloadButton"]>button {
+        background-color: transparent !important;
+        color: #043927 !important;
+        border: 2px solid #043927 !important;
+        width: 100% !important;
+        border-radius: 2px !important;
+        height: 3em !important;
+        font-family: 'Playfair Display', serif !important;
         transition: 0.4s !important;
-    }
-    .stButton>button:hover { 
-        background-color: #043927 !important; 
-        color: #FCF9F2 !important; 
+        box-shadow: none !important;
     }
 
-    /* Slicer (Selectbox) */
-    div[data-baseweb="select"] > div { background-color: #043927 !important; color: white !important; border: none !important; }
-    div[data-testid="stSelectbox"] label p { color: #000000 !important; }
-    div[data-baseweb="select"] * { color: white !important; }
+    /* Hover state: Fills with Emerald, Text turns White */
+    button[kind="secondary"]:hover, 
+    .stButton>button:hover, 
+    div[data-testid="stDownloadButton"]>button:hover {
+        background-color: #043927 !important;
+        color: #FCF9F2 !important;
+        border: 2px solid #043927 !important;
+    }
+
+    /* Slicer (Selectbox) - Emerald Green Background */
+    div[data-baseweb="select"] > div { 
+        background-color: #043927 !important; 
+        color: white !important; 
+        border: none !important; 
+    }
+    
+    /* Targets the text inside the slicer specifically */
+    div[data-baseweb="select"] * {
+        color: white !important;
+    }
+    
+    div[data-testid="stSelectbox"] label p { 
+        color: #000000 !important; 
+    }
 
     /* Workflow Arrows */
     .arrow { font-size: 50px; text-align: center; color: #043927; margin: 10px 0; }
